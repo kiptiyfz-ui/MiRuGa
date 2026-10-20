@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MiRuGa - Miniatur Rumah Gaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;800&family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bgA:#bfe9ff;--bgB:#fff3c4;--bgC:#ffd6e7;--bg:#cfe8ff;--bg2:#e3f2ff;--card:#fff;--ink:#1f2433;--line:#1f2433;--sh:#1f2433;--btn:#ffd23f;--btnc:#1f2433;--ok:#b9f6ca;--no:#ffcdd2}
+@media(prefers-color-scheme:dark){:root{--bgA:#16213a;--bgB:#1d2a4a;--bgC:#2a2350;--bg:#16213a;--bg2:#1c2b4d;--card:#26324f;--ink:#f2f5ff;--line:#0a0f1d;--sh:#05080f;--ok:#1b5e3a;--no:#6b2530}}
+body.hc{--bgA:#000;--bgB:#000;--bgC:#000;--bg:#000;--bg2:#000;--card:#000;--ink:#ffe600;--line:#ffe600;--sh:#ffe600;--btn:#000;--btnc:#ffe600;--ok:#003300;--no:#400}
+*{box-sizing:border-box}html{font-size:100%}
+body{margin:0;font-family:Nunito,system-ui,sans-serif;font-weight:600;color:var(--ink);background:linear-gradient(160deg,var(--bgA),var(--bgB) 55%,var(--bgC)) fixed}
+header{text-align:center;padding:.8rem .5rem 0}
+h1{font-weight:700;font-family:Fredoka,'Baloo 2','Comic Sans MS',sans-serif;font-size:2.1rem;margin:.2rem 0;background:linear-gradient(90deg,#ff5252,#ff9800,#2ecc71,#2196f3);-webkit-background-clip:text;background-clip:text;color:transparent;}
+body.hc h1{background:none;color:#ffe600}
+.sub{margin:0 0 .4rem;font-weight:800}
+.bar{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;margin:.3rem 0}
+.bar span{background:var(--card);border:3px solid var(--line);border-radius:10px;padding:.2rem .6rem;font-weight:800}
+.b{font-family:Fredoka,'Baloo 2','Comic Sans MS',sans-serif;font-size:.95rem;line-height:1.3;background:var(--btn);color:var(--btnc);border:3px solid var(--line);border-radius:14px;padding:.45rem .8rem;margin:.15rem;cursor:pointer;transition:.08s}
+.b:hover{filter:brightness(1.1)}.b:active{transform:scale(.95)}
+.b:disabled{opacity:.45;cursor:not-allowed}.b.ok{background:var(--ok);color:var(--ink)}.b.no{background:var(--no);color:var(--ink)}
+main{max-width:900px;margin:0 auto;padding:.5rem}
+#sc{width:100%;height:auto;border:4px solid var(--line);border-radius:14px;display:block;background:#8fd3ff}
+#sc .hs{cursor:pointer}#sc .hs:hover,#sc .hs:focus{filter:brightness(1.15);outline:none}
+.lb{font:800 13px Nunito,sans-serif;fill:#fff;stroke:#1f2433;stroke-width:4px;paint-order:stroke;pointer-events:none}
+.star{cursor:pointer;opacity:.4;font-size:22px}.star:hover{opacity:1}
+body.hc #sc{filter:contrast(1.4)}
+#ov{position:fixed;inset:0;background:#0009;display:flex;align-items:center;justify-content:center;padding:.5rem;z-index:9}
+#ov[hidden],[hidden]{display:none!important}
+#md{background:var(--card);border:4px solid var(--line);border-radius:16px;width:min(860px,100%);max-height:94vh;overflow:auto;padding:.8rem;animation:pop .3s ease-out}
+@keyframes pop{from{transform:scale(.7);opacity:0}}
+.mh{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}
+.mh b{font-weight:700;font-family:Fredoka,'Baloo 2','Comic Sans MS',sans-serif;font-size:1.15rem}
+.card{background:var(--bg2);border:3px solid var(--line);border-radius:12px;padding:.7rem;margin:.4rem 0;}
+.st{position:relative;height:110px;background:linear-gradient(#bfe6ff 70%,#7ccf5a 70%);border:3px solid var(--line);border-radius:10px;overflow:hidden;color:#1f2433}
+.o{position:absolute;left:5%;bottom:14px;font-size:2.2rem}
+.gifts{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center}
+.gf{position:relative;width:84px;height:84px;font-size:1.8rem;border-radius:16px;padding:0;overflow:visible}
+.lid{position:absolute;left:-4px;top:-10px;width:92px;height:22px;background:#e53935;border:3px solid var(--line);border-radius:6px}
+.room{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.4rem;padding:.6rem;border:4px solid var(--line);border-radius:12px;background:linear-gradient(#f5e6c8 55%,#a0663a 55%)}
+.room .b{background:#fffc;color:#1f2433;font-size:.85rem}.room .e{display:block;font-size:2.2rem}
+.ctl{position:fixed;left:0;right:0;bottom:0;z-index:12;display:flex;justify-content:space-between;align-items:center;gap:.4rem;padding:.5rem .8rem calc(.5rem + env(safe-area-inset-bottom,0px));background:var(--card);border-top:4px solid var(--line);touch-action:none;user-select:none;-webkit-user-select:none}.ctl .k{width:78px;height:66px;font-size:2rem}.ctl .b{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;min-width:64px;font-size:1.3rem}.ctl .b:active{transform:none;filter:brightness(.85)}canvas{width:100%;height:auto;border:4px solid var(--line);border-radius:10px;background:#8fd3ff;display:block}
+#gq{position:absolute;left:3%;right:3%;top:5%;z-index:2;max-height:90%;overflow:auto}
+textarea,input{width:100%;font:inherit;font-weight:600;padding:.4rem;border:3px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+#tt{position:fixed;bottom:12px;left:50%;transform:translateX(-50%);background:var(--btn);color:var(--btnc);border:3px solid var(--line);border-radius:10px;padding:.4rem .8rem;z-index:20;}
+.hint{font-weight:800}details{margin:.3rem 0}
+</style></head><body>
+<header><h1>🏠 MiRuGa</h1><p class="sub">Miniatur Rumah Gaya · IPAS Kelas 4</p>
+<div class="bar"><span id="sM"></span><span id="sK"></span><span id="sS"></span></div>
+<div class="bar"><button class="b" id="fp" title="Huruf besar">A+</button><button class="b" id="fm" title="Huruf kecil">A−</button><button class="b" id="hc">◐ Kontras</button><button class="b" id="bG">🍄 Game</button><button class="b" id="bF" disabled>📝 Refleksi</button><button class="b" id="sn">🔊</button></div></header>
+<main>
+<svg id="sc" viewBox="0 0 800 420" stroke="#1f2433" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" role="img" aria-label="Rumah MiRuGa">
+<defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5ec0ff"/><stop offset="1" stop-color="#dff4ff"/></linearGradient><linearGradient id="gr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7fe05a"/><stop offset="1" stop-color="#46ad36"/></linearGradient><linearGradient id="gl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9f3ff"/><stop offset="1" stop-color="#7cc8f0"/></linearGradient></defs>
+<rect width="800" height="420" fill="url(#sk)" stroke="none"/>
+<circle cx="715" cy="62" r="46" fill="none" stroke="#ffd93b" stroke-width="9" stroke-dasharray="5 13"/><circle cx="715" cy="62" r="33" fill="#ffd93b"/>
+<g fill="#fff" stroke="none" opacity=".9"><circle cx="560" cy="75" r="20"/><circle cx="590" cy="62" r="27"/><circle cx="625" cy="76" r="20"/></g>
+<g id="cl" class="hs" fill="#fff" stroke="none"><circle cx="90" cy="62" r="24"/><circle cx="122" cy="48" r="31"/><circle cx="157" cy="62" r="24"/><rect x="70" y="60" width="110" height="26" rx="13"/></g>
+<path d="M0 300Q150 215 330 285T660 272T800 285V320H0Z" fill="#a6e58a" stroke="none"/>
+<rect y="293" width="800" height="127" fill="url(#gr)" stroke="none"/>
+<path d="M352 312Q335 365 262 420H505Q432 365 404 312Z" fill="#f3e2b3" stroke="none"/>
+<g id="yard" class="hs" tabindex="0" role="button" aria-label="Halaman"><rect y="296" width="800" height="124" fill="#0000" stroke="none"/>
+<g id="tree"><rect x="79" y="222" width="22" height="90" rx="9" fill="#8b5a2b"/><circle cx="55" cy="205" r="34" fill="#35a346"/><circle cx="125" cy="205" r="34" fill="#35a346"/><circle cx="90" cy="178" r="50" fill="#3fb350"/><circle cx="72" cy="160" r="13" fill="#7fdc7c" stroke="none"/><circle cx="110" cy="195" r="6" fill="#e8453c"/><circle cx="68" cy="215" r="6" fill="#e8453c"/></g>
+<g id="mail"><rect x="626" y="255" width="10" height="56" rx="4" fill="#8b5a2b"/><rect x="598" y="220" width="66" height="40" rx="18" fill="#e8453c"/><rect x="662" y="212" width="8" height="24" rx="3" fill="#ffd93b"/><rect x="615" y="236" width="32" height="6" rx="3" fill="#fff" stroke="none"/></g>
+<g fill="#2f9e40"><circle cx="190" cy="288" r="24"/><circle cx="222" cy="282" r="28"/><circle cx="250" cy="291" r="21"/><circle cx="535" cy="292" r="20"/><circle cx="562" cy="285" r="25"/><circle cx="590" cy="293" r="18"/></g>
+<g id="flw"><path d="M721 270V305M700 280V305M744 282V305" stroke="#2e7d32" stroke-width="4" fill="none"/><circle cx="721" cy="258" r="13" fill="#ff7eb6"/><circle cx="721" cy="258" r="5" fill="#ffd93b"/><circle cx="700" cy="272" r="9" fill="#b388ff"/><circle cx="744" cy="276" r="9" fill="#ffab40"/></g>
+<circle cx="300" cy="350" r="16" fill="#ff9800"/><path d="M286 346Q300 338 314 346M286 356Q300 364 314 356" fill="none" stroke="#fff"/>
+<g fill="none" stroke-width="4"><circle cx="540" cy="360" r="14"/><circle cx="590" cy="360" r="14"/><path d="M540 360L560 340L590 360M560 340H545M575 340L590 360M575 340H585" stroke="#e8453c"/></g>
+<text class="lb" x="335" y="408">Klik halaman</text></g>
+<rect x="230" y="170" width="260" height="140" rx="8" fill="#ffe8b0"/><rect x="230" y="296" width="260" height="14" rx="5" fill="#d3bd88"/>
+<polygon points="200,180 360,78 520,180" fill="#e8453c"/><path d="M215 172Q360 90 505 172" fill="none" stroke="#fff6" stroke-width="5"/><circle cx="360" cy="140" r="15" fill="url(#gl)"/>
+<g id="w1" class="hs" tabindex="0" role="button" aria-label="Jendela 1"><rect x="252" y="203" width="66" height="56" rx="10" fill="url(#gl)" stroke-width="4"/><path d="M285 203V259M252 231H318" fill="none"/><path d="M262 213L272 213" stroke="#fff" stroke-width="5"/><rect x="246" y="259" width="78" height="9" rx="4" fill="#d3bd88"/></g>
+<g id="w2" class="hs" tabindex="0" role="button" aria-label="Jendela 2"><rect x="402" y="203" width="66" height="56" rx="10" fill="url(#gl)" stroke-width="4"/><path d="M435 203V259M402 231H468" fill="none"/><path d="M412 213L422 213" stroke="#fff" stroke-width="5"/><rect x="396" y="259" width="78" height="9" rx="4" fill="#d3bd88"/></g>
+<g id="dr" class="hs" tabindex="0" role="button" aria-label="Pintu"><path d="M340 310V250Q340 222 368 222Q396 222 396 250V310Z" fill="#a0642c" stroke-width="4"/><rect x="349" y="238" width="18" height="30" rx="6" fill="#c07d3c"/><rect x="370" y="238" width="18" height="30" rx="6" fill="#c07d3c"/><circle cx="387" cy="278" r="4" fill="#ffd93b"/></g>
+<text class="lb" x="256" y="196">Jendela 1</text><text class="lb" x="392" y="196">Jendela 2 🎁</text><text class="lb" id="dl" x="330" y="216">Pintu 🔒</text>
+<text class="star" data-i="0" x="95" y="190">⭐</text><text class="star" data-i="1" x="620" y="245">⭐</text><text class="star" data-i="2" x="105" y="40">⭐</text><text class="star" data-i="3" x="195" y="292">⭐</text><text class="star" data-i="4" x="714" y="263">⭐</text>
+</svg></main>
+<div id="ov" hidden><div id="md" role="dialog" aria-modal="true"><div class="mh"><b id="mt"></b><span><button class="b" id="rd">🔊 Bacakan</button><button class="b" id="cl0">✖ Tutup</button></span></div><div id="mb"></div></div></div>
+<script>
+const $=i=>document.getElementById(i),sh=a=>{a=a.slice();for(let i=a.length;i>1;i--){const j=Math.random()*i|0;[a[i-1],a[j]]=[a[j],a[i-1]]}return a};
+const S={tab:new Set,box:new Set,m:0,q:new Set,sc:0,gs:null,gd:0,ref:null,open:0,ex:new Set,fs:100};
+let snd=1,R='',ac,toastT;
+/* ---------- suara ---------- */
+function A(){if(!ac)try{ac=new(window.AudioContext||window.webkitAudioContext)}catch(e){}return ac}
+function tone(f,d=.1,ty='square',v=.06){if(!snd||!f)return;try{const x=A();if(!x)return;const o=x.createOscillator(),g=x.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(v,x.currentTime);g.gain.exponentialRampToValueAtTime(.001,x.currentTime+d);o.connect(g);g.connect(x.destination);o.start();o.stop(x.currentTime+d)}catch(e){}}
+const beep=(f=660,d=.12,t)=>tone(f,d,t);
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang='id-ID';u.rate=.9;speechSynthesis.speak(u)}catch(e){toast('Suara bacaan tidak tersedia. Baca teksnya, ya!')}}
+function stop(){try{speechSynthesis.cancel()}catch(e){}}
+function toast(t){let e=$('tt');if(!e){e=document.createElement('div');e.id='tt';document.body.appendChild(e)}e.textContent=t;e.hidden=0;clearTimeout(toastT);toastT=setTimeout(()=>e.hidden=1,2500)}
+/* ---------- modal & status ---------- */
+function openM(t,h,r){$('mt').textContent=t;$('mb').innerHTML=h;R=r||'';$('ov').hidden=0;$('md').scrollTop=0}
+function closeM(){$('ov').hidden=1;stop();gstop();$('mb').innerHTML=''}
+function upd(){const M=S.tab.size+S.box.size;$('sM').textContent=`📚 Materi (${M}/11)`;$('sK').textContent=`⭐ Kuis (${S.q.size}/5)`;$('sS').textContent='Skor: '+S.sc;$('bF').disabled=S.q.size<5;$('dl').textContent=S.open?'Masuk 🏠':M>=11?'Pintu 🗝️':'Pintu 🔒'}
+function ask(el,q,cb){let bad=0;const o=sh([q.a,...q.w]);el.innerHTML=`<p><b>${q.t}</b></p>`+o.map((x,i)=>`<button class="b" style="display:block;width:100%;text-align:left" data-i="${i}">${'ABC'[i]}. ${x}</button>`).join('')+'<p class="hint"></p>';
+el.onclick=e=>{const b=e.target.closest('button[data-i]');if(!b)return;if(o[b.dataset.i]===q.a){b.classList.add('ok');tone(880,.15);tone(1175,.2);el.onclick=null;el.querySelector('.hint').textContent='🎉 Benar!';cb(!bad)}else{bad=1;b.classList.add('no');beep(180,.25,'sawtooth');el.querySelector('.hint').textContent='💡 '+(q.h||'Hampir! Coba pilihan lain, ya.')}}}
+/* ---------- Jendela 1 ---------- */
+const T=[['Pengertian Gaya','Gaya adalah tarikan atau dorongan pada benda.','Mendorong meja, menarik pintu, menendang bola.'],['Gaya Otot','Gaya yang berasal dari tenaga otot manusia atau hewan.','Mengangkat tas, mendorong gerobak, sapi menarik bajak.'],['Gaya Gesek','Muncul saat dua permukaan bersentuhan dan melawan gerak benda.','Rem sepeda, sol sepatu tidak licin, menggosok telapak tangan.'],['Gaya Magnet','Gaya tarik atau tolak yang menarik benda logam tertentu.','Magnet kulkas, kompas, penutup kotak pensil.'],['Gaya Gravitasi','Tarikan bumi ke pusat bumi.','Buah jatuh, hujan turun, bola yang dilempar ke atas akan jatuh.'],['Gaya Pegas','Muncul saat pegas atau karet ditarik atau ditekan, lalu kembali ke bentuk semula.','Kasur pegas, pulpen tekan, ketapel, trampolin.']];
+function win1(){openM('Jendela 1: Mengenal Gaya','<div>'+T.map((t,i)=>`<button class="b" data-t="${i}">${t[0]}</button>`).join('')+'</div><div id="tc" class="card">Pilih salah satu tombol di atas 👆</div>');
+$('mb').onclick=e=>{const b=e.target.closest('[data-t]');if(!b)return;const i=+b.dataset.t,t=T[i];S.tab.add(i);b.textContent='✅ '+t[0];beep(700);$('tc').innerHTML=`<h3>${t[0]}</h3><p>${t[1]}</p><p>🌟 <b>Contoh:</b> ${t[2]}</p><small>Dibuka: ${S.tab.size}/6</small>`;R=`${t[0]}. ${t[1]} Contoh: ${t[2]}`;upd()}}
+/* ---------- Jendela 2 ---------- */
+const B=[['Diam → Bergerak','Gaya dapat membuat benda diam menjadi bergerak.'],['Bergerak → Diam','Gaya dapat menghentikan benda yang bergerak. Rem sepeda memakai gaya gesek.'],['Mengubah Kecepatan','Gaya kecil membuat benda bergerak pelan, gaya besar membuatnya cepat.'],['Mengubah Arah','Gaya dapat mengubah arah gerak benda, misalnya bola yang memantul.'],['Mengubah Bentuk','Gaya dapat mengubah bentuk benda. Tanah liat tetap gepeng, pegas kembali seperti semula.']];
+const bike='<svg viewBox="0 0 120 70" width="104" fill="none" stroke="#1f2433" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="25" cy="52" r="16"/><circle cx="95" cy="52" r="16"/><path d="M25 52L45 26L85 30L55 52L45 26M55 52L85 30L95 52M85 30L82 17H95M38 24H52M50 24L62 41L55 52" stroke="#e8453c"/><circle cx="64" cy="5" r="6" fill="#ffcc99"/><path d="M50 24L62 11M62 11L90 17"/><circle cx="98" cy="17" r="3" fill="#ffd93b"/></svg>';
+function win2(){openM('Jendela 2: Pengaruh Gaya','<p>Pilih satu kotak misteri 🎁</p><div class="gifts">'+B.map((b,i)=>`<button class="b gf" data-b="${i}"><i class="lid"></i>${S.box.has(i)?'✅':'?'}</button>`).join('')+'</div><div id="bx"></div>');
+$('mb').onclick=e=>{const b=e.target.closest('[data-b]');if(!b)return;const i=+b.dataset.b;b.animate([{transform:'rotate(-8deg)'},{transform:'rotate(8deg)'},{transform:'rotate(-6deg)'},{transform:'rotate(0)'}],{duration:450});beep(400,.1);
+setTimeout(()=>{b.querySelector('.lid').animate([{transform:'none'},{transform:'translateY(-34px) rotate(-25deg)'}],{duration:400,fill:'forwards'});beep(900,.15)},450);
+setTimeout(()=>{S.box.add(i);b.lastChild.textContent='✅';sim(i);upd()},900)}}
+function sim(i){const o0=['⚽','','🚀','⚽'][i];const st=x=>`<div class="st">${x}</div>`;let h='';
+const bt=(id,t)=>`<button class="b" id="${id}">${t}</button>`;
+if(i==0)h=st('<span id="o" class="o">⚽</span>')+bt('a1','👟 Dorong bola');
+if(i==1)h=st(`<span id="o" class="o">${bike}</span>`)+bt('a1','▶ Jalankan')+bt('a2','🛑 Rem');
+if(i==2)h=st('<span id="o" class="o">🛷</span>')+bt('a1','🐢 Dorong pelan')+bt('a2','🚀 Dorong kuat');
+if(i==3)h=st('<span id="o" class="o">⚽</span><span class="o" style="left:auto;right:3%">🧱</span>')+bt('a1','👟 Tendang ke dinding');
+if(i==4)h=st('<span id="o" class="o" style="left:25%">🟤</span><span id="p" class="o" style="left:60%">🌀</span>')+bt('a1','✋ Tekan keduanya');
+$('bx').innerHTML=`<div class="card"><h3>${B[i][0]}</h3><p>${B[i][1]}</p>${h}<p id="mg" class="hint"></p></div>`;R=B[i][0]+'. '+B[i][1];
+const o=$('o'),m=t=>$('mg').textContent=t;let a;const go=(to,d,ea='ease-out')=>{o.getAnimations().forEach(x=>x.cancel());o.style.left='5%';a=o.animate([{left:'5%'},{left:to}],{duration:d,easing:ea,fill:'forwards'})};
+$('a1').onclick=()=>{beep(300,.1);
+if(i==0){go('85%',1500);m('Bola diam jadi bergerak karena didorong!')}
+if(i==1){go('85%',4000,'linear');m('Sepeda melaju...')}
+if(i==2){go('85%',3500);m('Dorongan pelan → kecepatan kecil.')}
+if(i==3){o.getAnimations().forEach(x=>x.cancel());a=o.animate([{left:'5%'},{left:'70%',offset:.5},{left:'15%'}],{duration:2400,fill:'forwards'});m('Bola memantul, arahnya berubah!')}
+if(i==4){$('o').animate([{transform:'scaleY(1)'},{transform:'scaleY(.35)'}],{duration:500,fill:'forwards'});$('p').animate([{transform:'scaleY(1)'},{transform:'scaleY(.35)'},{transform:'scaleY(1)'}],{duration:900,fill:'forwards'});m('Tanah liat tetap gepeng. Pegas kembali seperti semula!')}};
+if($('a2'))$('a2').onclick=()=>{if(i==1){if(!a||a.playState!='running'){m('👆 Tekan ▶ Jalankan dulu, baru Rem!');return}const p=o.offsetLeft;a.cancel();o.style.left=p+'px';a=o.animate([{left:p+'px'},{left:p+28+'px'}],{duration:700,easing:'ease-out',fill:'forwards'});beep(150,.3,'sawtooth');m('Rem memakai gaya gesek, sepeda melambat lalu berhenti.')}
+else{go('85%',900);m('Dorongan kuat → lebih cepat!')}}}
+/* ---------- Pintu & misi ---------- */
+const MS=[{l:'Mudah ⭐',n:'Fahombo, Lompat Batu dari Nias',s:'Di Pulau Nias, para pemuda berlatih Fahombo, yaitu lompat batu. Seorang pemuda berlari kencang, menolak tanah dengan kakinya, lalu melompati batu setinggi sekitar dua meter. Hup! Ia melayang, lalu mendarat kembali di tanah.',t:'Gaya apa yang menarik tubuh pemuda turun ke tanah?',a:'Gaya gravitasi',w:['Gaya magnet','Gaya pegas'],h:'Bumi menarik semua benda ke bawah.'},
+{l:'Sedang ⭐⭐',n:'Panjat Pinang di Hari Kemerdekaan',s:'Pada hari kemerdekaan, warga memanjat tiang pinang yang licin berminyak. Peserta merosot lagi dan lagi. Lalu mereka menaburkan pasir di tiang, dan akhirnya bisa memanjat lebih tinggi.',t:'Mengapa pasir membantu peserta memanjat?',a:'Pasir menambah gaya gesek karena permukaan lebih kasar',w:['Pasir menghilangkan gravitasi','Pasir membuat tiang menjadi magnet'],h:'Permukaan kasar membuat gesekan lebih besar.'},
+{l:'Sulit ⭐⭐⭐',n:'Layang-layang Tradisional Bali',s:'Di Bali, anak-anak menerbangkan layang-layang tradisional. Benang ditarik agar layang-layang naik. Ketika angin berhenti, layang-layang turun pelan ke tanah.',t:'Pasangan gaya mana yang tepat?',a:'Gaya otot menarik benang, gaya gravitasi menurunkan layang-layang',w:['Gaya magnet dan gravitasi','Gaya otot dan gaya pegas'],h:'Siapa yang menarik benang? Siapa yang menarik layang-layang turun?'},
+{l:'Budaya Daerahku 🏡',n:'Tari Terbang Bandung dari Pasuruan',s:'Tari Terbang Bandung adalah kesenian khas Pasuruan, seperti opera: perpaduan drama, tari, dan musik. Ada dua penabuh ketipung, satu penabuh jidor, dan empat penabuh terbang atau rebana yang sekaligus menari. Penabuh memukul terbang dengan telapak tangan. Saat telapak tangan menyentuh dan bergesekan dengan kulit terbang, terdengar bunyi yang merdu. Pertunjukan berlangsung sekitar sepuluh menit.',t:'Gaya apa yang terjadi antara permukaan tangan penabuh dengan permukaan alat musik terbang?',a:'Gaya gesek',w:['Gaya magnet','Gaya gravitasi'],h:'Dua permukaan bersentuhan dan saling bergesekan.'}];
+function door(){if(S.open)return room();const M=S.tab.size+S.box.size;if(M<11){openM('Pintu Terkunci 🔒',`<div class="card"><p>Selesaikan dulu semua materi jendela, ya!</p><p>Jendela 1: ${S.tab.size}/6<br>Jendela 2: ${S.box.size}/5</p></div>`,'Pintu terkunci. Selesaikan dulu materi kedua jendela.');beep(150,.3);return}mis()}
+function mis(){const m=MS[S.m];openM(`Misi ${S.m+1}/4 · ${m.l}`,`<div class="card"><b>${m.n}</b><p><button class="b" id="pl">🔊 Dengarkan</button><button class="b" id="sp">⏹ Berhenti</button></p><details><summary>📖 Baca ceritanya</summary><p>${m.s}</p></details></div><div class="card" id="aq"></div>`,m.s);
+$('pl').onclick=()=>say(m.s);$('sp').onclick=stop;say(m.s);
+ask($('aq'),m,()=>{S.m++;stop();if(S.m<4){$('aq').insertAdjacentHTML('beforeend','<button class="b" id="nx">Misi berikutnya ➡</button>');$('nx').onclick=mis}else{S.open=1;upd();const d=$('dr');d.style.transformBox='fill-box';d.style.transformOrigin='left';d.animate([{transform:'scaleX(1)'},{transform:'scaleX(.15)'}],{duration:800,fill:'forwards'});tone(523,.15);tone(784,.3);setTimeout(room,900)}})}
+const RM=[['🧹','Menyapu lantai','Gaya otot dan gaya gesek','Otot menggerakkan sapu; gesekan membuat debu terdorong.',[{transform:'rotate(-25deg)'},{transform:'rotate(25deg)'},{transform:'none'}]],['🪑','Menggeser kursi','Gaya otot dan gaya gesek','Kursi bergerak karena didorong; gesekan lantai membuatnya berhenti.',[{transform:'translateX(-15px)'},{transform:'translateX(20px)'},{transform:'none'}]],['🗄️','Menarik laci','Gaya otot','Tarikan otot membuat laci yang diam menjadi bergerak keluar.',[{transform:'none'},{transform:'translateX(-25px)'},{transform:'none'}]],['🧲','Magnet kulkas','Gaya magnet','Magnet menarik pintu kulkas dari logam sehingga menempel.',[{transform:'scale(1)'},{transform:'scale(1.4)'},{transform:'scale(1)'}]],['🍎','Apel jatuh dari meja','Gaya gravitasi','Bumi menarik apel ke bawah sehingga apel jatuh.',[{transform:'translateY(-20px)'},{transform:'translateY(25px)'},{transform:'none'}]],['🛏️','Kasur pegas','Gaya pegas','Pegas ditekan lalu kembali ke bentuk semula, kasur memantul.',[{transform:'scaleY(1)'},{transform:'scaleY(.7)'},{transform:'scaleY(1.15)'},{transform:'none'}]],['🖊️','Pulpen tekan','Gaya pegas','Pegas di dalam pulpen mendorong tombol kembali ke atas.',[{transform:'translateY(0)'},{transform:'translateY(10px)'},{transform:'translateY(-6px)'},{transform:'none'}]]];
+function room(){openM('Di Dalam Rumah 🏠','<p>Klik benda untuk menjelajah! <b id="ec"></b></p><div class="room">'+RM.map((r,i)=>`<button class="b" data-r="${i}"><span class="e">${r[0]}</span>${r[1]}</button>`).join('')+'</div><div class="card" id="rp">Pilih benda di ruangan 👆</div>');
+const c=()=>$('ec').textContent=`Dijelajahi ${S.ex.size}/7`+(S.ex.size==7?' 🎉 Selamat, kamu hebat!':'');c();
+$('mb').onclick=e=>{const b=e.target.closest('[data-r]');if(!b)return;const i=+b.dataset.r,r=RM[i];b.firstChild.animate(r[4],{duration:700});beep(500+i*60,.15);S.ex.add(i);$('rp').innerHTML=`<h3>${r[0]} ${r[1]}</h3><p>Jenis gaya: <b>${r[2]}</b></p><p>${r[3]}</p>`;R=`${r[1]}. Jenis gaya: ${r[2]}. ${r[3]}`;c()}}
+/* ---------- Halaman ---------- */
+const Y=[['🚲','Bersepeda','Gaya otot mengayuh pedal; gaya gesek rem menghentikan sepeda.'],['⚽','Menendang bola','Gaya otot mengubah gerak dan arah bola.'],['🥭','Mangga jatuh','Gaya gravitasi menarik mangga ke tanah.'],['🛒','Mendorong gerobak','Semakin besar dorongan, semakin cepat gerobak bergerak.'],['🪣','Menimba air','Otot menarik tali; gravitasi menarik timba ke bawah.'],['🏸','Bulu tangkis','Pukulan mengubah arah dan kecepatan kok. Senar raket memakai gaya pegas.'],['🪀','Gasing','Otot memutar gasing; gaya gesek akhirnya menghentikannya.'],['🎋','Egrang','Otot melangkahkan egrang; gravitasi menarik ke bawah.'],['🥁','Tari Terbang Bandung','Otot menabuh; gaya gesek terjadi antara permukaan tangan dan permukaan terbang.']];
+function yard(){openM('Gaya di Luar Rumah 🌳','<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.4rem">'+Y.map(y=>`<div class="card"><b style="font-size:1.4rem">${y[0]}</b> <b>${y[1]}</b><br>${y[2]}</div>`).join('')+'</div>',Y.map(y=>y[1]+'. '+y[2]).join(' '))}
+/* ---------- Kuis rahasia ---------- */
+const Q=[['Tarikan atau dorongan pada suatu benda disebut ...','Gaya',['Cahaya','Suara']],['Rem sepeda dapat berhenti karena gaya ...','Gesek',['Magnet','Pegas']],['Mangga jatuh ke tanah karena gaya ...','Gravitasi',['Otot','Gesek']],['Tanah liat berubah bentuk saat ditekan adalah pengaruh gaya terhadap ...','Bentuk benda',['Warna benda','Berat benda']],['Magnet pada pintu kulkas menempel karena gaya ...','Magnet',['Gravitasi','Otot']]];
+function quiz(i,el){if(S.q.has(i))return;openM('Kuis Rahasia ⭐','<div class="card" id="aq"></div>');const q=Q[i];ask($('aq'),{t:q[0],a:q[1],w:q[2]},()=>{S.q.add(i);S.sc+=20;el.remove();upd();$('aq').insertAdjacentHTML('beforeend','<p><b>+20 poin! ⭐</b></p>');if(S.q.size==5)$('aq').insertAdjacentHTML('beforeend','<p>🎉 Semua kuis selesai! Tombol Refleksi sudah aktif.</p>')})}
+/* ---------- Refleksi & rekap ---------- */
+function refl(){openM('Refleksi 📝',`<div class="card"><p>Benar: <b>${S.q.size}/5</b> · Skor kuis: <b>${S.sc}</b>. Hebat sekali, terus semangat belajar! 🌟</p></div><p><b>Bagaimana perasaanmu setelah belajar dengan MiRuGa?</b></p><div id="em">${[['😄','Senang'],['🤩','Seru'],['🙂','Biasa saja'],['😕','Bingung'],['😟','Kurang nyaman']].map(e=>`<button class="b" data-e="${e[0]} ${e[1]}">${e[0]} ${e[1]}</button>`).join('')}</div><label>Ceritakan perasaanmu: aku merasa ... karena ...<textarea id="r1" rows="3"></textarea></label><p><button class="b" id="rs">Kirim Refleksi</button></p>`,'Bagaimana perasaanmu setelah belajar dengan MiRuGa?');
+let em='';$('em').onclick=e=>{const b=e.target.closest('[data-e]');if(!b)return;em=b.dataset.e;$('em').querySelectorAll('.b').forEach(x=>x.classList.remove('ok'));b.classList.add('ok')};
+$('rs').onclick=()=>{S.ref=[em,$('r1').value];$('rs').textContent='Terima kasih! 🎉';beep(880,.2)}}
+/* ---------- Game ---------- */
+CanvasRenderingContext2D.prototype.roundRect||(CanvasRenderingContext2D.prototype.roundRect=function(x,y,w,h){this.rect(x,y,w,h)});
+const GQ=[['C1','Tarikan atau dorongan disebut ...','Gaya',['Cahaya','Bunyi']],['C1','Gaya tarik bumi yang membuat benda jatuh ...','Gravitasi',['Gesek','Magnet']],['C2','Mengapa bola diam bergerak setelah ditendang?','Karena ada gaya yang bekerja pada bola',['Karena bola ingin bergerak sendiri','Karena bola ringan']],['C2','Pernyataan benar tentang gaya gesek ...','Muncul saat dua permukaan bersentuhan dan melawan gerak benda',['Hanya muncul pada benda jatuh','Hanya menarik benda besi']],null,['C3','Tombol pulpen kembali ke atas karena gaya ...','Pegas',['Magnet','Gravitasi']],['C3','Sol sepatu bergerigi agar tidak tergelincir. Gaya yang diperbesar ...','Gesek',['Magnet','Pegas']],['C4','Mobil A di keramik dan mobil B di karpet didorong sama kuat. B berhenti lebih dekat. Penyebabnya ...','Gaya gesek karpet lebih besar',['Gravitasi karpet lebih kecil','Mobil B tidak didorong']],['C4','Bola B didorong lebih kuat dan sampai lebih dulu. Kesimpulan ...','Semakin besar gaya, semakin cepat benda bergerak',['Warna memengaruhi kecepatan','Gaya tidak memengaruhi kecepatan']],['C5','Dina berkata gravitasi hanya bekerja pada benda yang jatuh. Penilaian ...','Salah, gravitasi menarik semua benda, termasuk yang diam',['Benar, benda diam tidak ditarik bumi','Benar, gravitasi hanya di udara']]];
+const C6=['C6','Merancang jalur kereta mainan agar berhenti lebih cepat di ujung jalur. Rancangan terbaik ...','Melapisi ujung jalur dengan amplas untuk memperbesar gaya gesek',['Melapisi dengan minyak','Menaikkan papan lebih tinggi']];
+let G={run:0},K={},H={},kk=k=>K[k]||H[k]>performance.now(),relax=0,mus=1,mi=0,mT,cx,P,bricks,mush,POLE=3150,CAS=3300;
+const MEL=[523,0,659,0,784,659,523,0,587,0,698,0,784,698,587,0],BAS=[131,131,196,196,175,175,196,196];
+function music(on){clearInterval(mT);if(on&&mus&&snd)mT=setInterval(()=>{tone(MEL[mi%16],.18,'square',.03);if(mi%2==0)tone(BAS[(mi>>1)%8],.35,'triangle',.05);mi++},210)}
+function gameRules(){openM('🍄 Petualangan Gaya','<div class="card"><p>Hai, aku <b>Gaco</b> 🧒! Ambil 10 jamur 🍄 untuk menjawab soal. Jawaban benar membuat Gaco membesar. Lompati bata, atau pukul bata ❓ dari bawah. Setelah semua jamur terambil, panjat tangga dan sentuh bendera 🚩!</p><p>Kontrol manual: tahan ◀ ▶ untuk berjalan, tekan ⤒ untuk melompat (atau panah keyboard dan spasi). Tidak ada batas waktu.</p><p>Skor: benar langsung 10, benar setelah salah 5, jamur bonus 0.</p></div><button class="b" id="go">▶ Mulai</button>');
+$('go').onclick=gstart}
+function gstart(){$('mb').innerHTML='<div style="position:relative"><canvas id="cv" width="800" height="300"></canvas><div id="gq" class="card" hidden></div></div>';R='Petualangan Gaya. Ambil jamur dan jawab soal.';
+const pc=document.createElement('div');pc.className='ctl';pc.id='ctl';
+pc.innerHTML='<span><button class="b k" data-k="l" aria-label="Mundur">◀</button><button class="b k" data-k="r" aria-label="Maju">▶</button></span><button class="b" id="gm">🎵 Musik: '+(mus?'ON':'OFF')+'</button><button class="b k" data-k="j" aria-label="Lompat">⤒</button>';
+document.body.appendChild(pc);$('md').style.paddingBottom='100px';
+const kb=ev=>{ev.preventDefault();const on={};for(const t of ev.touches){const el=document.elementFromPoint(t.clientX,t.clientY),b=el&&el.closest&&el.closest('[data-k]');if(b)on[b.dataset.k]=1}['l','r','j'].forEach(k=>{if(on[k]){K[k]=1;H[k]=performance.now()+250}else K[k]=0})};
+['touchstart','touchmove','touchend','touchcancel'].forEach(t=>pc.addEventListener(t,kb,{passive:false}));
+pc.addEventListener('mousedown',ev=>{const b=ev.target.closest('[data-k]');if(b){K[b.dataset.k]=1;H[b.dataset.k]=performance.now()+250}});
+window.onmouseup=()=>{K.l=K.r=K.j=0};pc.oncontextmenu=ev=>ev.preventDefault();
+$('gm').onclick=()=>{mus=!mus;$('gm').textContent='🎵 Musik: '+(mus?'ON':'OFF');music(mus)};
+cx=$('cv').getContext('2d');S.gs=0;S.gd=0;P={x:60,y:200,vx:0,vy:0,s:1,on:1};bricks=[];mush=[];
+for(let i=0;i<10;i++){const x=350+i*250,top=i%2==0||i==9;if(top){bricks.push({x,y:210,w:40,h:40,t:'s'});mush.push({x:x+8,y:184,i,got:0})}else{bricks.push({x,y:130,w:40,h:40,t:'q'});mush.push({x:x+8,y:137,i,got:0,hid:1,b:bricks[bricks.length-1]})}if(i%2)bricks.push({x:x+110,y:185,w:80,h:14,t:'p'})}
+for(let i=0;i<4;i++)bricks.push({x:2960+i*40,y:250-(i+1)*40,w:40,h:(i+1)*40,t:'s'});bricks.push({x:3120,y:90,w:140,h:160,t:'s'});
+G={run:1,pause:0,st:'play',cam:0,col:0,fy:30,deb:[]};music(1);requestAnimationFrame(gloop)}
+function gstop(){G.run=0;music(0);K={};const c=$('ctl');if(c)c.remove();$('md').style.paddingBottom=''}
+function hit(x,y,w,h,b){return x<b.x+b.w&&x+w>b.x&&y<b.y+b.h&&y+h>b.y}
+function gstep(){const w=22*P.s,h=32*P.s,sp=relax?2.2:3.4;
+P.vx=G.st=='play'?(relax?sp:((kk('r')?sp:0)-(kk('l')?sp:0))):G.st=='walk'?2.5:0;
+if(kk('j')&&P.on&&G.st=='play'){P.vy=-11;P.on=0;beep(520,.08)}
+P.vy=Math.min(P.vy+.55,12);P.x=Math.max(0,P.x+P.vx);
+for(const b of bricks)if(b.t!='p'&&hit(P.x,P.y,w,h,b)){if(P.vx>0)P.x=b.x-w;else if(P.vx<0)P.x=b.x+b.w}
+const py=P.y;P.y+=P.vy;P.on=0;
+for(const b of bricks){if(b.dead||!hit(P.x,P.y,w,h,b))continue;
+if(P.vy>=0&&py+h<=b.y+4){P.y=b.y-h;P.vy=0;P.on=1}
+else if(b.t!='p'&&P.vy<0){P.y=b.y+b.h;P.vy=0;if(b.t=='q'){b.dead=1;beep(200,.15,'sawtooth');for(let k=0;k<8;k++)G.deb.push({x:b.x+20,y:b.y+20,vx:(k-4)*1.3,vy:-4-Math.random()*3});const m=mush.find(m=>m.b===b);m.hid=0}}}
+bricks=bricks.filter(b=>!b.dead);
+if(P.y+h>=250){P.y=250-h;P.vy=0;P.on=1}
+G.deb.forEach(d=>{d.x+=d.vx;d.y+=d.vy;d.vy+=.5});G.deb=G.deb.filter(d=>d.y<320);
+G.cam=Math.max(0,Math.min(P.x-300,2700));
+if(G.st=='play'){for(const m of mush)if(!m.got&&!m.hid&&hit(P.x,P.y,w,h,{x:m.x,y:m.y,w:24,h:24})){gq(m.i);return}
+if(P.x+w>=POLE){if(G.col<10){P.x=POLE-w-6;toast('Ambil semua 10 jamur dulu! 🍄 ('+G.col+'/10)')}else{G.pause=1;const e=$('gq');e.hidden=0;ask(e,{t:'🚩 '+C6[0]+': '+C6[1],a:C6[2],w:C6[3]},f=>{S.gs+=f?10:5;setTimeout(()=>{e.hidden=1;G.pause=0;G.st='drop';tone(523,.15);tone(659,.15);tone(784,.15);setTimeout(()=>tone(1047,.4),450)},800)})}}}
+if(G.st=='drop'){G.fy+=2;if(G.fy>=70)G.st='walk'}
+if(G.st=='walk'&&P.x>CAS+25){G.st='end';G.pause=1;S.gd=1;const e=$('gq');e.hidden=0;e.innerHTML=`<h3>🏰 Selamat, Gaco sampai di kastil!</h3><p>Skor akhir: <b>${S.gs}</b> dari 100 🌟</p>`}}
+function gq(i){const q=GQ[i],e=$('gq');G.pause=1;e.hidden=0;K={};const fin=g=>{mush[i].got=1;G.col++;if(g){const o=32*P.s;P.s*=1.09;P.y-=32*P.s-o}e.hidden=1;G.pause=0};
+if(!q){e.innerHTML='<p>⭐ <b>Jamur Bonus!</b> Fakta: gravitasi bumi menjaga bulan tetap mengelilingi bumi. (0 poin)</p><button class="b" id="ok">Lanjut ➡</button>';$('ok').onclick=()=>fin(0)}
+else ask(e,{t:q[0]+': '+q[1],a:q[2],w:q[3]},f=>{S.gs+=f?10:5;setTimeout(()=>fin(1),800)})}
+function gloop(){if(!G.run)return;if(!G.pause)gstep();gdraw();requestAnimationFrame(gloop)}
+function gdraw(){const c=cx,cm=G.cam;const gr=c.createLinearGradient(0,0,0,300);gr.addColorStop(0,'#6ec6ff');gr.addColorStop(1,'#e3f6ff');c.fillStyle=gr;c.fillRect(0,0,800,300);
+c.fillStyle='#a6e58a';for(let k=0;k<7;k++){c.beginPath();c.ellipse(((k*420-cm*.3)%2940+2940)%2940-200,262,210,80,0,0,7);c.fill()}
+c.fillStyle='#fff';for(let k=0;k<7;k++){const x=((k*330+80-cm*.5)%2400+2400)%2400-200,y=50+k%3*30;c.beginPath();c.arc(x+20,y+10,16,0,7);c.arc(x+44,y,21,0,7);c.arc(x+68,y+10,16,0,7);c.fill()}
+c.fillStyle='#58c43c';c.fillRect(0,250,800,14);c.fillStyle='#b5733a';c.fillRect(0,264,800,36);c.fillStyle='#9a5f2e';for(let x=-(cm%50);x<800;x+=50){c.beginPath();c.arc(x+10,282,4,0,7);c.arc(x+35,274,3,0,7);c.fill()}
+c.font='110px serif';c.fillText('🏰',CAS-cm,250);
+c.fillStyle='#ddd';c.fillRect(POLE-cm,20,6,70);c.font='26px serif';c.fillText('🚩',POLE-cm+4,G.fy+18);
+for(const b of bricks){c.fillStyle=b.t=='q'?'#ffc233':b.t=='p'?'#8bc34a':'#d98a4a';c.beginPath();c.roundRect(b.x-cm,b.y,b.w,b.h,b.t=='p'?7:12);c.fill();c.lineWidth=3;c.strokeStyle='#3b2410';c.stroke();if(b.t=='q'){c.fillStyle='#3b2410';c.font='22px sans-serif';c.fillText('❓',b.x-cm+8,b.y+28)}}
+c.font='24px serif';for(const m of mush)if(!m.got&&!m.hid)c.fillText(m.i==4?'⭐':'🍄',m.x-cm,m.y+22);
+c.fillStyle='#c2703d';G.deb.forEach(d=>{c.beginPath();c.arc(d.x-cm,d.y,4,0,7);c.fill()});
+c.font=32*P.s+'px serif';c.fillText('🧒',P.x-cm-3,P.y+32*P.s);
+c.font='bold 16px monospace';c.fillStyle='#1f2433';c.fillText('🍄 '+G.col+'/10   Skor: '+S.gs,10,22)}
+addEventListener('keydown',e=>{if(!G.run||$('ov').hidden)return;const k={ArrowLeft:'l',ArrowRight:'r',ArrowUp:'j',' ':'j'}[e.key];if(k){K[k]=1;e.preventDefault()}});
+addEventListener('keyup',e=>{const k={ArrowLeft:'l',ArrowRight:'r',ArrowUp:'j',' ':'j'}[e.key];if(k)K[k]=0});
+/* ---------- tombol & klik ---------- */
+const clk=(id,f)=>{const e=$(id);e.onclick=ev=>{beep(600,.06);f(ev)};e.onkeydown=ev=>{if(ev.key=='Enter'||ev.key==' '){ev.preventDefault();e.onclick(ev)}}};
+clk('w1',win1);clk('w2',win2);clk('dr',door);clk('yard',yard);clk('cl',()=>toast('Awan menyimpan sebuah bintang rahasia ⭐'));
+document.querySelectorAll('.star').forEach(s=>s.onclick=ev=>{ev.stopPropagation();quiz(+s.dataset.i,s)});
+$('cl0').onclick=closeM;$('ov').onclick=e=>{if(e.target.id=='ov')closeM()};addEventListener('keydown',e=>{if(e.key=='Escape'&&!$('ov').hidden)closeM()});
+$('rd').onclick=()=>say(R||$('mb').innerText);
+$('fp').onclick=()=>{S.fs=Math.min(150,S.fs+10);document.documentElement.style.fontSize=S.fs+'%'};
+$('fm').onclick=()=>{S.fs=Math.max(90,S.fs-10);document.documentElement.style.fontSize=S.fs+'%'};
+$('hc').onclick=()=>document.body.classList.toggle('hc');
+$('bG').onclick=gameRules;$('bF').onclick=refl;
+$('sn').onclick=()=>{snd=!snd;$('sn').textContent=snd?'🔊':'🔇';if(!snd){stop();music(0)}else if(G.run)music(1)};
+upd();
+</script></body></html>
